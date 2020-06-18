@@ -1,56 +1,1093 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F068FAAD-7FFD-4DBA-9736-CAC98356E035}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>CSharpFundmentalExam</RootNamespace>
-    <AssemblyName>CSharpFundmentalExam</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\Packup\Program.cs">
-      <Link>Program.cs</Link>
-    </Compile>
-    <Compile Include="ASK.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-</Project>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.CodeDom;
+
+namespace CSharpFundmentalExam
+{
+    enum Operation
+    {
+        //Question No.1- .Net Framework is a combination between liberaries and classes that helps you to make your Programming Process easier
+        //Question No.2- System.IO
+
+        
+        SphereVolume = 1,        //Question No.3
+        MathOperator = 2,        //Question No.4 and 6 // Two Numbers calculator made for ALL MATH OPERATIONS!!#########
+        SpaceCountInString = 3,          //Question No.5
+        SumOfNumbersInString = 4,        //Question No.7
+        GetLongestWordInMultipleStrings = 5,        //Question No.8
+        GetMaximumNumber = 6,        //Question No.9
+        GetLongestWord = 7,      //Question No.10
+        CheckXYZ = 8,        //Question No.11
+        SumOfThreeNumbers = 9,      //Qustion No.12
+        PyramidPattern = 10,        //Question No.13 //Draw a Pyramid of Numbers with any DESIRED HEIGHT!! 
+        Factorial = 11,           //Question No.14
+        PerfectNumbers = 12,        //Question No.15
+        ArrayElementFreuency = 13,      //Questioin No.16
+        SeperateOddAndEven = 14,        //Question No.17
+        DeleteDesiredElement = 15,          //Question No.18
+        SecondLargestNumber = 16,           //Question No.19
+        DayProp = 17,                //Question No.20
+        TravelExpences = 18,            //Question No.21
+        FileCreator = 19,           //Question No.22
+        DateTimeArrays = 20,        //Question No.23
+        WorkingWithFiles = 21,      //Question No.24.25.26.27.28
+        NumberOfWords = 22,        //Question No.29
+        TextLongestsWord = 23       //Question No.30
+
+
+    }
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("Please Enter the corresponding Number for your operation:\n---------------------------------------------------------\n");
+            Console.WriteLine("Enter'1' For Sphere Volume\nEnter'2' for Math Calculator\nEnter'3' for space counting\nEnter'4' For Sum of Numbers");
+            Console.WriteLine("Enter'5' to get Longest String in Multiple Strings\nEnter'6' to get Maximum value from Numbers");
+            Console.WriteLine("Enter'7' To get Longest word in a sentence\nEnter'8' to Check XYZ\nEnter'9'to get summation of three Numbers");
+            Console.WriteLine("Enter'10' to Draw Pyramid Pattern\nEnter'11' To get Number's Factorial\nEnter'12' to check if the Number is Perfect");
+            Console.WriteLine("Enter'13' to count Frequency of numbers\nEnter'14' to seperate odd and even Numbers in array");
+            Console.WriteLine("Enter'15' to Delete Desired Element in Array\nEnter'16' to find second Largest Number in Array");
+            Console.WriteLine("Enter'17' to find 2nd Largest Number in Array\nEnter'18' to calculate Travel expences\nEnter'19' to create text file");
+            Console.WriteLine("Enter'20' to get Longest and total Duration for Multiple Activities\nEnter'21' to work with Files");
+            Console.WriteLine("Enter'22' to get Number of words in a text file\nEnter'23' to get Longest word in a text file");
+
+
+            try
+            {
+
+                Operation Resp = (Operation)int.Parse(Console.ReadLine());
+
+                switch (Resp)
+                {
+                    case Operation.SphereVolume:
+                        SphereVolume();
+                        break;
+                    case Operation.MathOperator:
+                        MathOperator();
+                        break;
+                    case Operation.SpaceCountInString:
+                        NumberOfSpaces();
+                        break;
+                    case Operation.SumOfNumbersInString:
+                        SumOfIndividualDigits();
+                        break;
+                    case Operation.GetLongestWordInMultipleStrings:
+                        GetLongestWordInMultipleStrings();
+                        break;
+                    case Operation.GetMaximumNumber:
+                        GetMaximumNumber();
+                        break;
+                    case Operation.GetLongestWord:
+                        GetLongestWord();
+                        break;
+                    case Operation.CheckXYZ:
+                        CheckXYZ();
+                        break;
+                    case Operation.SumOfThreeNumbers:
+                        SumOfThreeNumbers();
+                        break;
+                    case Operation.PyramidPattern:
+                        PyramidPattern();
+                        break;
+                    case Operation.Factorial:
+                        Factorial();
+                        break;
+                    case Operation.PerfectNumbers:
+                        PerfectNumbers();
+                        break;
+                    case Operation.ArrayElementFreuency:
+                        ArrayElementFrequency();
+                        break;
+                    case Operation.SeperateOddAndEven:
+                        SeperateOddAndEven();
+                        break;
+                    case Operation.DeleteDesiredElement:
+                        DeleteDesiredElement();
+                        break;
+                    case Operation.SecondLargestNumber:
+                        SecondLargestNumber();
+                        break;
+                    case Operation.DayProp:
+                        DayProp();
+                        break;
+                    case Operation.TravelExpences:
+                        TravelExpences();
+                        break;
+                    case Operation.FileCreator:
+                        FileCreator();
+                        break;
+                    case Operation.DateTimeArrays:
+                        DateTimeArrays();
+                        break;
+                    case Operation.WorkingWithFiles:
+                        WorkingWithFiles();
+                        break;
+                    case Operation.NumberOfWords:
+                        NumberOfWords();
+                        break;
+                    case Operation.TextLongestsWord:
+                        TextLongestWord();
+                        break;
+
+
+                    default:
+                        Console.WriteLine("Invalid Number Please try Again");
+                        break;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input!, Please Enter a Valid Number");
+
+            }
+        }
+        static void SphereVolume()
+        {
+            Console.Write("Please Enter Sphere Radius: ");
+            double r = double.Parse(Console.ReadLine());
+            double Volume = (1.34) * (3.14159) * (Math.Pow(r, 3));
+            Console.WriteLine("The Volume of the Sphere is: " + Volume);
+
+        }
+
+        static void MathOperator()
+        {
+            //This App is made for all Types pf operations and it has a high defence level
+            double x = 0;
+            double y = 0;
+            double Op = 0;
+
+            bool Adding = true;
+            while (Adding)
+            {
+                try
+                {
+
+                    Console.WriteLine("Welcom to your 2 Numbers Calculator App!\n----------------------------------------\n");
+                    try
+                    {
+                        Console.Write("Please enter your first Number: ");
+                        x = double.Parse(TryAgain());
+                    }
+                    catch (FormatException)
+                    {
+
+                        Console.WriteLine("Syntax Error!, Please don't enter Letters Enter a Valid Number\n ");
+                        Console.Write("Please enter your first Number: ");
+                        x = double.Parse(TryAgain());
+
+                    }
+                    try
+                    {
+                        Console.Write("Please enter your second Number: ");
+                        y = double.Parse(TryAgain());
+                    }
+                    catch (FormatException)
+                    {
+
+                        Console.WriteLine("Syntax Error!, Please don't enter Letters Enter a Valid Number \n");
+                        Console.Write("Please enter your second Number: ");
+                        y = double.Parse(TryAgain());
+
+                    }
+                    try
+                    {
+
+                        Console.WriteLine("\nPlease Choose the corresponding number to your operation:\n ");
+                        Console.WriteLine("Enter '1' For Summation\nEnter '2' For Subtractioin\nEnter '3' For Multiplication\nEnter '4' For Division\nEnter '5' For Power\nEnter '6' For Remainder\n");
+                        Op = int.Parse(Console.ReadLine());
+
+                        while (Op > 6 || Op < 1)
+                        {
+                            Console.Write("Invalid Number, Please try again: ");
+                            Op = int.Parse(Console.ReadLine());
+
+                        }
+                    }
+                    catch (FormatException)
+                    {
+
+                        Console.WriteLine("Syntax Error!, Please don't enter Letters Enter a Valid Number\n ");
+
+                        Console.WriteLine("Please Choose the corresponding number to your operation:\n ");
+                        Console.WriteLine("Enter '1' For Summation\nEnter '2' For Subtractioin\nEnter '3' For Multiplication\nEnter '4' For Division\nEnter '5' For Power\nEnter '6' For Remainder\n");
+                        Op = int.Parse(Console.ReadLine());
+
+                        while (Op > 6 || Op < 1)
+                        {
+                            Console.Write("Invalid Number, Please try again: ");
+                            Op = int.Parse(Console.ReadLine());
+
+                        }
+
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                    Console.WriteLine("\nTerminating The Program ..... ");
+                }
+
+
+                switch (Op)
+                {
+                    case 1:
+                        double sum = x + y;
+                        Console.WriteLine("\nSummation = " + x + " + " + y + " = " + sum);
+                        break;
+                    case 2:
+                        double sub = x - y;
+                        Console.WriteLine("\nSubtraction = " + x + " - " + y + " = " + sub);
+                        break;
+                    case 3:
+                        double mul = x * y;
+                        Console.WriteLine("\nMultiplication = " + x + " * " + y + " = " + mul);
+                        break;
+                    case 4:
+                        double div = x / y;
+                        while (y == 0)
+                        {
+                            Console.Write("\nError!, you can't devide by Zero\nPlease enter a valid second number: ");
+                            y = double.Parse(Console.ReadLine());
+                            div = x / y;
+                        }
+                        Console.WriteLine("\nDeviding = " + x + " / " + y + " = " + div);
+                        break;
+                    case 5:
+                        double pow = Power(x, y);
+                        Console.WriteLine("\nPower = " + x + " pow " + y + " = " + pow);
+                        break;
+                    case 6:
+                        double rem = x % y;
+                        while (x < y)
+                        {
+                            Console.WriteLine("Error!, First number must be bigger than or equal to the second number to get remainder");
+                            Console.Write("Please enter your first Number: ");
+                            x = double.Parse(Console.ReadLine());
+
+                            Console.Write("Please enter your second Number: ");
+                            y = double.Parse(Console.ReadLine());
+                            rem = x % y;
+                        }
+                        Console.WriteLine("\nRemainder = " + x + " % " + y + " = " + rem);
+                        break;
+
+                }
+
+                Console.WriteLine(" \nDo you wish to make another operation?");
+                Console.WriteLine("Enter 'Y' for Yes or 'N' for No: ");
+                var another = Console.ReadLine();
+                if (another != "y" && another != "Y")
+                {
+                    Adding = false;
+                    Console.WriteLine("\nThank you for using the calculator App!\n");
+                }
+
+            }
+        }
+        static double Power(double a, double b)
+        {
+            double ans = Math.Pow(a, b);
+            return ans;
+
+
+
+        }
+        static string TryAgain()
+        {
+
+            var question = Console.ReadLine();
+            while (question == "")
+            {
+                Console.WriteLine("You didn't Type any thing!,Please Try again");
+                question = Console.ReadLine();
+
+
+            }
+            return question;
+        }
+        static void NumberOfSpaces()
+        {
+            Console.WriteLine("Please Enter any Sentence to count its Spaces");
+            string Sen = Console.ReadLine();
+            int Counter = 0;
+
+            for (int i = 0; i < Sen.Length; i++)
+            {
+                char a = Sen[i];
+
+                if (a == ' ')
+                {
+                    Counter += 1;
+
+
+
+                }
+
+
+            }
+
+            Console.WriteLine("The Number of Spaces is: " + Counter);
+
+        }
+        static void SumOfIndividualDigits()
+        {
+            Console.WriteLine("Please Enter any Numbers in the following format: 2,356,1200,540");
+            string Num = Console.ReadLine();
+            int result = 0;
+            string NumString = string.Empty;
+            for (int i = 0; i < Num.Length; i++)
+            {
+                char a = Num[i];
+
+                if (a >= '0' && a <= '9')
+                {
+                    NumString = NumString + a;
+
+                    if (i == Num.Length - 1) //Last Number
+                    {
+                        result = result + int.Parse(NumString);
+                    }
+
+                }
+                else if (!string.IsNullOrWhiteSpace(NumString))
+                {
+                    result = result + int.Parse(NumString);
+                    NumString = string.Empty;
+                }
+            }
+
+            Console.WriteLine("The Sum of Numbers is: " + result);
+
+        }
+        static void GetLongestWord()
+        {
+            Console.WriteLine("Please Enter a Sentence to get it's Longest Word");
+            String Sen = Console.ReadLine();
+            Console.WriteLine(" ");
+            String NumString = string.Empty;
+            int MaxVal = int.MinValue;
+            int counter = 0;
+
+            for (int i = 0; i < Sen.Length; i++)
+            {
+                char a = Sen[i];
+                if (a != ' ')
+                {
+                    NumString += a;
+                }
+                else if (a == ' ')
+                {
+                    int WordLength = NumString.Length;
+                    counter++;
+
+                    if (WordLength > MaxVal)
+                    {
+                        MaxVal = WordLength;
+                    }
+
+                    Console.WriteLine("Number of Digits in word No.{0} '{1}' is: {2}", counter, NumString, WordLength);
+                    NumString = string.Empty;
+                }
+
+            }
+            Console.WriteLine("\nLongest word Contains " + MaxVal + " Characters \n");
+        }
+        static void GetMaximumNumber()
+        {
+            Console.WriteLine("Please Enter any Numbers in the following format: 2,356,1200,540");
+            String Num = Console.ReadLine();
+            String NumString = string.Empty;
+            int MaxVal = int.MinValue;
+
+            for (int i = 0; i < Num.Length; i++)
+            {
+                char a = Num[i];
+
+                if (a >= '0' && a <= '9')
+                {
+                    NumString += a;
+                }
+                else if (!string.IsNullOrWhiteSpace(NumString))
+                {
+                    if (int.Parse(NumString) > MaxVal)
+                    {
+                        MaxVal = int.Parse(NumString);
+                        NumString = string.Empty;
+                    }
+                }
+
+
+            }
+            Console.WriteLine("Max Number is :" + MaxVal);
+
+
+        }
+        static void GetLongestWordInMultipleStrings()
+        {
+            Console.Write("Please enter the Number of strings you want to insert: ");
+            int Num = int.Parse(Console.ReadLine());
+            int MaxVal = int.MinValue;
+
+            for (int i = 0; i < Num; i++)
+            {
+                Console.Write("Please enter your No.{0} String: ", i + 1);
+                string String = Console.ReadLine();
+
+                int SenLength = String.Length;
+
+                if (SenLength > MaxVal)
+                {
+                    MaxVal = SenLength;
+                }
+                var x = i + 1;
+                Console.WriteLine("Your No." + x + " String contains " + SenLength + " Characters\n");
+
+            }
+            Console.WriteLine("\nLongest string is " + MaxVal + " Characters Long");
+        }
+
+        static void CheckXYZ()
+        {
+            try
+            {
+                int x = ASK.ASKint("Enter Value of X: ");
+                int y = ASK.ASKint("Enter the value of Y: ");
+                int z = ASK.ASKint("Enter the value of Z: ");
+
+                if (y > x)
+                {
+                    Console.WriteLine("Y is bigger than X");
+                }
+                else
+                {
+                    Console.WriteLine("Y is smaller than X");
+
+                }
+                if (z > y)
+                {
+                    Console.WriteLine("Z is bigger than Y");
+
+                }
+                else
+                {
+                    Console.WriteLine("Z is smaller than Y");
+
+                }
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid Input!, Please try again");
+
+            }
+
+        }
+        static void SumOfThreeNumbers()
+        {
+
+            try
+            {
+                double x = ASK.ASKdouble("Please Enter the First Number: ");
+                double y = ASK.ASKdouble("Please Enter the Second Number: ");
+                double z = ASK.ASKdouble("Please Enter the Third Number: ");
+
+                if (x == y)
+                {
+                    Console.WriteLine("\nNumber1 = Number2, so Number3 = " + z);
+                }
+                else if (x == z)
+                {
+                    Console.WriteLine("\nNumber1 = Number3, so Number2 = " + y);
+                }
+                else if (z == y)
+                {
+                    Console.WriteLine("\nNumber2 = Number3, so Number31 = " + x);
+                }
+                else
+                {
+                    double Sum = x + y + z;
+                    Console.WriteLine("\nThe Sum of the Three Numbers = " + Sum);
+                }
+
+            }
+            catch (FormatException)
+            {
+
+
+
+
+                Console.WriteLine("Invalid input!, Please Enter a Valid Numbers");
+            }
+
+        }
+
+        static void PyramidPattern()
+        {
+            int Height = ASK.ASKint("Please Enter the Number of Rows (Pyramid Height): ");
+            int Count = 1;
+            int Num = 1;
+
+            string a = " ";
+
+            StringBuilder Spacing1 = new StringBuilder();
+
+            for (int u = 0; u < Height; u++)
+            {
+
+                Spacing1.Append(a);
+            }
+
+            for (int j = 0; j < Height; j++)
+            {
+                Console.Write(Spacing1.ToString());
+
+                for (int i = 0; i < Count; i++)
+                {
+
+                    Console.Write(Num + "  ");
+                    Num++;
+
+                }
+
+                Spacing1.Remove(Height - j - 1, 1);
+                Count++;
+                Console.WriteLine(" ");
+            }
+        }
+
+        static void Factorial()
+        {
+            int Factorial = 1;
+            int F = ASK.ASKint("Please Enter the Desired Number to Calculate its Factorial: ");
+
+            for (int i = 1; i <= F; i++)
+            {
+                Factorial = Factorial * i;
+            }
+            Console.WriteLine("The Factorial of Number " + F + " is: " + Factorial);
+        }
+
+        static void PerfectNumbers()
+        {
+            double Num = ASK.ASKdouble("Please Enter a Number to check if it's Perfect or not: ");
+            Console.WriteLine(" ");
+
+            double Sum = 0;
+            double Dev = 0;
+
+            for (int i = 1; i <= Num - 1; i++)
+            {
+
+                if (Num % i == 0)
+                {
+                    Sum += i;
+                    Console.WriteLine("Proper Devisor for " + Num + " is " + i);
+                }
+            }
+
+            Console.WriteLine("\nSum of Proper Devisors is: " + Sum);
+
+            Dev = Num / Sum;
+
+            if (Dev == 1)
+            {
+                Console.WriteLine("\nThe Sum of proper devisors of the Number = The Number itself ");
+                Console.WriteLine("The Number " + Num + " is Perfect\n------------------------\n");
+            }
+            else if (Dev != 1)
+            {
+                Console.WriteLine("\nThe Sum of proper devisors of the Number doesn't equal The Number itself ");
+                Console.WriteLine("The Number " + Num + " is NOT Perfect\n-----------------------------\n");
+
+            }
+        }
+        static void ArrayElementFrequency()
+        {
+            int Num = ASK.ASKint("Please Enter the Number of Array Elements: \n");
+
+            double[] Arr1 = new double[Num];
+
+            for (int i = 0; i < Num; i++)
+            {
+                Arr1[i] = ASK.ASKdouble("Please Insert index " + i + ": ");
+            }
+
+            var ArrGroup = Arr1.GroupBy(x => x);
+
+            Console.WriteLine("\nFrequency of elements is:\n");
+            foreach (var group in ArrGroup)
+            {
+                Console.WriteLine("Element " + group.Key + " - Frequency equals " + group.Count());
+            }
+
+
+        }
+        static void SeperateOddAndEven()
+        {
+            try
+            {
+
+                int Num = ASK.ASKint("Please Enter the Number of Array Elements: \n");
+
+                double[] Arr1 = new double[Num];
+
+                string OddString = string.Empty;
+                string EvenString = string.Empty;
+
+                StringBuilder NumString1 = new StringBuilder(string.Empty);
+                StringBuilder NumString2 = new StringBuilder(string.Empty);
+
+                int OddCount = 0;
+                int EvenCount = 0;
+                int Count1 = 0;
+                int Count2 = 0;
+
+
+                for (int i = 0; i < Num; i++)
+                {
+                    Arr1[i] = ASK.ASKdouble("Please Insert index " + i + ": ");
+                }
+
+                for (int i = 0; i < Arr1.Length; i++)
+                {
+                    if (Arr1[i] % 2 == 0)
+                    {
+                        EvenCount++;
+                        double a = Arr1[i];
+                        EvenString = a + "," + EvenString;
+
+                    }
+                    else if (Arr1[i] % 2 != 0)
+                    {
+                        OddCount++;
+                        double a = Arr1[i];
+                        OddString = a + "," + OddString;
+
+                    }
+
+
+                }
+
+                //Here you can make another solution using String.Split Method for the odd string and even string
+
+                double[] OddArr = new double[OddCount];
+                double[] EvenArr = new double[EvenCount];
+
+                for (int i = 0; i < EvenString.Length; i++)
+                {
+                    char a = EvenString[i];
+                    if (a >= '0' && a <= '9')
+                    {
+                        NumString1.Append(a);
+                    }
+                    else if (!string.IsNullOrWhiteSpace(NumString1.ToString()))
+                    {
+                        EvenArr.SetValue(double.Parse(NumString1.ToString()), Count1);
+                        Count1++;
+                        NumString1.Clear();
+                    }
+                }
+
+
+                for (int i = 0; i < OddString.Length; i++)
+                {
+                    char b = OddString[i];
+                    if (b >= '0' && b <= '9')
+                    {
+                        NumString2.Append(b);
+                    }
+                    else if (!string.IsNullOrWhiteSpace(NumString2.ToString()))
+                    {
+
+                        OddArr.SetValue(double.Parse(NumString2.ToString()), Count2);
+                        NumString2.Clear();
+                        Count2++;
+                    }
+                }
+
+                Console.WriteLine("\nEven Numbers: " + EvenString + "\n");
+
+                for (int x = 0; x < EvenArr.Length; x++)
+                {
+                    Console.Write(EvenArr[x] + ", ");
+                }
+
+                Console.WriteLine("\nOdd Numbers: " + OddString + "\n");
+
+                for (int y = 0; y < OddArr.Length; y++)
+                {
+                    Console.Write(OddArr[y] + ", ");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("\nInvalid Input, Please try to enter a Valid Number\n");
+            }
+
+        }
+
+        static void DeleteDesiredElement()
+        {
+            try
+            {
+                int Num = ASK.ASKint("Please Enter the Number of Array Elements: \n");
+                double[] Arr1 = new double[Num];
+                bool Adding = true;
+
+                for (int i = 0; i < Num; i++)
+                {
+                    Arr1[i] = ASK.ASKdouble("Please Insert index " + i + ": ");
+                }
+
+                while (Adding)
+                {
+                    Console.WriteLine("\nDo you wish to Delete an Element?");
+                    char Ans = ASK.ASKchar("Enter'Y' for Yes or 'N' for No\n");
+
+                    if (Ans == 'Y' || Ans == 'y')
+                    {
+                        int index = ASK.ASKint("Please enter the index you wish to delete: ");
+                        do
+                        {
+                            Console.WriteLine("\nInvalid Input, Index is out of Array limit, Try Again:");
+                            index = ASK.ASKint("Please enter the index you wish to delete: ");
+                        } while (index > Num - 1 || index < 0);
+
+                        Arr1[index] = 0;
+
+
+                        Console.WriteLine("\nYour new Array is:\n");
+                        for (int i = 0; i < Num; i++)
+                        {
+                            Console.WriteLine("index" + i + " is:\t" + Arr1[i]);
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Thank you for using the App!");
+                        Adding = false;
+                    }
+                }
+
+            }
+            catch (FormatException)
+            {
+
+                Console.WriteLine("\nInvalid Input, Please try to enter a Valid Number\n");
+            }
+        }
+
+        static void SecondLargestNumber()
+        {
+            try
+            {
+                int Num = ASK.ASKint("Please Enter the Number of Array Elements: \n");
+                double[] Arr1 = new double[Num];
+
+                for (int i = 0; i < Num; i++)
+                {
+                    Arr1[i] = ASK.ASKdouble("Please Insert index " + i + ": ");
+                }
+
+                double MaxVal = Arr1.Max();
+                double SecMaxVal = double.MinValue;
+                double ThirdMaxVal = double.MinValue;
+
+                for (int j = 0; j < Num; j++)
+                {
+                    if (Arr1[j] < MaxVal && Arr1[j] > SecMaxVal)
+                    {
+                        SecMaxVal = Arr1[j];
+                    }
+                }
+
+                for (int u = 0; u < Num; u++)
+                {
+                    if (Arr1[u] < MaxVal && Arr1[u] < SecMaxVal && Arr1[u] > ThirdMaxVal)
+                    {
+                        ThirdMaxVal = Arr1[u];
+                    }
+                }
+
+                Console.WriteLine("\nFirst Maximum Value is: " + MaxVal);
+                Console.WriteLine("Second Maximum Value is: " + SecMaxVal);
+                Console.WriteLine("Third Maximum Value is: " + ThirdMaxVal);
+                Console.WriteLine("  ");
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("\nInvalid Input, Please try to enter a Valid Number\n");
+            }
+
+
+
+        }
+
+        static void DayProp()
+        {
+            try
+            {
+                int Year = ASK.ASKint("Please Enter Year: ");
+                while (Year > 3000 || Year < 0)
+                {
+                    Console.WriteLine("Invalid Year, Please Try Again:");
+                    Year = ASK.ASKint("Please Enter a Year: ");
+                }
+
+                int Month = ASK.ASKint("Please Enter Month: ");
+                while (Month > 12 || Month < 1)
+                {
+                    Console.WriteLine("Invalid Month, Please Enter a value between 1 and 12:");
+                    Month = ASK.ASKint("Please Enter a Month: ");
+                }
+
+                int Day = ASK.ASKint("Please Enter Day: ");
+                while (Day > 31 || Day < 0)
+                {
+                    Console.WriteLine("Invalid Day, Please Enter a value Between 1 and 31:");
+                    Day = ASK.ASKint("Please Enter Day: ");
+                }
+
+                int Hour = ASK.ASKint("Please Enter Hour: ");
+                int Minute = ASK.ASKint("Please Enter Minutes: ");
+                int Seconds = ASK.ASKint("Please Enter Seconds: ");
+
+                while (Hour < 0 || Hour > 60 || Minute < 0 || Minute > 60 || Seconds < 0 || Seconds > 60)
+                {
+                    Console.WriteLine("Invalid Input, Please enter a value between 0 and 60");
+
+                    Hour = ASK.ASKint("Please Enter Hour: ");
+                    Minute = ASK.ASKint("Please Enter Minutes: ");
+                    Seconds = ASK.ASKint("Please Enter Seconds: ");
+                }
+
+                string MonthName = string.Empty;
+
+                switch (Month)
+                {
+                    case 1:
+                        MonthName = "January";
+                        break;
+
+                    case 2:
+                        MonthName = "February";
+                        break;
+
+                    case 3:
+                        MonthName = "March";
+                        break;
+
+                    case 4:
+                        MonthName = "April";
+                        break;
+
+                    case 5:
+                        MonthName = "May";
+                        break;
+
+                    case 6:
+                        MonthName = "June";
+                        break;
+
+                    case 7:
+                        MonthName = "July";
+                        break;
+
+                    case 8:
+                        MonthName = "August";
+                        break;
+
+                    case 9:
+                        MonthName = "September";
+                        break;
+
+                    case 10:
+                        MonthName = "October";
+                        break;
+
+                    case 11:
+                        MonthName = "November";
+                        break;
+
+                    case 12:
+                        MonthName = "December";
+                        break;
+                }
+
+                Console.WriteLine("\nThe Date is: " + Day + " " + MonthName + " " + Year + " " + Hour + ":" + Minute + ":" + Seconds);
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("\nSyntax Error, Please Enter Numbers only");
+
+            }
+        }
+
+        static void TravelExpences()
+        {
+            double[] Arr = new double[6];
+            double Money = ASK.ASKdouble("Please Enter the amout of money you have: \n");
+            double Y = 0;
+
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                Console.Write("Please enter the value of item No.{0}: ", i + 1);
+                Y = double.Parse(Console.ReadLine());
+                Arr[i] = Y;
+
+            }
+
+            double TotalValue = Arr.Sum();
+
+            if (TotalValue > Money)
+            {
+                Console.WriteLine("\nTotal value of items is: " + TotalValue + ", and the available amount of Money is: " + Money);
+
+                Console.WriteLine("Sorry, The Money You have isn't enough");
+
+            }
+            else if (TotalValue <= Money)
+            {
+                Console.WriteLine("\nTotal value of items is: " + TotalValue + ", and available amount of Money is: " + Money);
+
+                Console.WriteLine("Nice! The Money will cover all expences");
+            }
+
+
+
+        }
+
+        static void FileCreator()
+        {
+            File.WriteAllText(@"D:\Engineering\text.txt", "this text a written by VS C# programming code");
+            File.Copy(@"D:\Engineering\text.txt", @"D:\Games\text.txt",true);
+
+        }
+
+        static void DateTimeArrays()
+        {
+            int Num = ASK.ASKint("Please Enter the Number of Activities: ");
+            string[] StartDateArray = new string[Num];
+            string[] EndDateArray = new string[Num];
+
+            TimeSpan Duration = TimeSpan.Zero;
+            TimeSpan TotalDuration = TimeSpan.Zero;
+            TimeSpan MaxVal = TimeSpan.Zero;
+
+            for (int i = 0; i < Num; i++)
+            {
+                Console.Write("Please Enter Activity No.{0} START DATE in the Following Format DD/MM/YYYY : ", i+1);
+                StartDateArray[i] = Console.ReadLine();
+
+                Console.Write("Please Enter Activity No.{0} END DATE in the Following Format DD/MM/YYYY : ", i + 1);
+                EndDateArray[i] = Console.ReadLine();
+                Console.WriteLine(" ");
+
+            }
+
+            for (int j = 0; j < Num; j++)
+            {
+                string Start = StartDateArray[j];
+                var ArrStart = Start.Split('/');
+
+                int StartDays = int.Parse(ArrStart[0]);
+                int StartMonth = int.Parse(ArrStart[1]);
+                int StartYears = int.Parse(ArrStart[2]);
+
+                DateTime StartDate = new DateTime(StartYears, StartMonth, StartDays);
+
+
+                string End = EndDateArray[j];
+                var ArrEnd = End.Split('/');
+
+                int EndDays = int.Parse(ArrEnd[0]);
+                int EndMonth = int.Parse(ArrEnd[1]);
+                int EndYears = int.Parse(ArrEnd[2]);
+
+                DateTime EndDate = new DateTime(EndYears, EndMonth, EndDays);
+
+                Duration = EndDate - StartDate;
+     
+                while (Duration>MaxVal)
+                {
+                    MaxVal = Duration;
+                }
+                
+
+                TotalDuration += Duration;
+
+                Console.WriteLine("\nActivity No.{0}:\n---------------",j+1);
+                Console.WriteLine("Start Date: {0}, End Date: {1}, Total Duration is: {2} Day", StartDate.ToLongDateString(), EndDate.ToLongDateString(), Duration.Days);
+                
+            }
+
+            Console.WriteLine("\nLongest Activity Duration is: {0} Days", MaxVal.Days);
+            Console.WriteLine("Total Duration For all Activities is: {0} Days", TotalDuration.Days);
+
+        }
+        static void WorkingWithFiles()
+        {
+            //Question No.24
+            File.Create(@"D:\Engineering\TEXT1.txt");
+
+            //Question No.25
+            File.Delete(@"D:\Games\text.txt");
+
+            //Question No.26
+            File.WriteAllText(@"D:\Engineering\Text2.txt", "This File Was Created by C# Programming Language and this text is written inside VS");
+
+            //Question No.27
+            File.AppendAllText(@"D:\Engineering\Text2.txt", "This line was appended by another method in VS-AppendAllText");
+
+            //Question No.28
+            string[] Line = new string[1] { "This is a text line to be added to the current File using AppendAllLines"};
+            File.AppendAllLines(@"D:\Engineering\Text2.txt", Line);
+
+        }
+
+        static void NumberOfWords()
+        {
+            string Text = File.ReadAllText(@"D:\Engineering\Text2.txt");
+            var ArrayText = Text.Split(' ');
+            Console.WriteLine("Number of words = {0} ", ArrayText.Length + 1);
+        }
+
+        static void TextLongestWord()
+        {
+            string Text = File.ReadAllText(@"D:\Engineering\Text2.txt");
+            var ArrayText = Text.Split(' ');
+            int MaxVal = int.MinValue;
+
+            for (int i = 0; i < ArrayText.Length; i++)
+            {
+                var Length = ArrayText[i].Length;
+
+                if(Length> MaxVal)
+                {
+                    MaxVal = Length;
+
+                }
+            }
+
+            Console.WriteLine("Longest Word containes {0} Letter ", MaxVal);
+        }
+
+      
+    }
+
+}
+ 
