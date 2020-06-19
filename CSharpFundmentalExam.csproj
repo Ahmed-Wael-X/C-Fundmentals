@@ -148,7 +148,7 @@ namespace CSharpFundmentalExam
 
             }
         }
-        static void SphereVolume()
+        static void SphereVolume()      //Question No.3
         {
             Console.Write("Please Enter Sphere Radius: ");
             double r = double.Parse(Console.ReadLine());
@@ -157,15 +157,16 @@ namespace CSharpFundmentalExam
 
         }
 
-        static void MathOperator()
+        static void MathOperator()      //Question No.4 and 6
         {
             //This App is made for all Types pf operations and it has a high defence level
+
             double x = 0;
             double y = 0;
             double Op = 0;
 
             bool Adding = true;
-            while (Adding)
+            while (Adding)     //=========> in case user wants to make another Operation 
             {
                 try
                 {
@@ -174,8 +175,8 @@ namespace CSharpFundmentalExam
                     try
                     {
                         Console.Write("Please enter your first Number: ");
-                        x = double.Parse(TryAgain());
-                    }
+                        x = double.Parse(TryAgain());   //=======> Function Made for the program "Math Operator"in case user hit Enter without typing anything
+                    }                                                    //you can check how this function is made below
                     catch (FormatException)
                     {
 
@@ -239,21 +240,21 @@ namespace CSharpFundmentalExam
 
                 switch (Op)
                 {
-                    case 1:
+                    case 1:  //Summatioin case  (Question No.4)......
                         double sum = x + y;
                         Console.WriteLine("\nSummation = " + x + " + " + y + " = " + sum);
                         break;
-                    case 2:
+                    case 2:     //Subtraction case
                         double sub = x - y;
                         Console.WriteLine("\nSubtraction = " + x + " - " + y + " = " + sub);
                         break;
-                    case 3:
+                    case 3:         //Multiplication case
                         double mul = x * y;
                         Console.WriteLine("\nMultiplication = " + x + " * " + y + " = " + mul);
                         break;
-                    case 4:
+                    case 4:         //Division case
                         double div = x / y;
-                        while (y == 0)
+                        while (y == 0)          //user can't devide by Zero....
                         {
                             Console.Write("\nError!, you can't devide by Zero\nPlease enter a valid second number: ");
                             y = double.Parse(Console.ReadLine());
@@ -261,11 +262,11 @@ namespace CSharpFundmentalExam
                         }
                         Console.WriteLine("\nDeviding = " + x + " / " + y + " = " + div);
                         break;
-                    case 5:
+                    case 5:         //Number1 to the power of Number2 case (Question No.6)........
                         double pow = Power(x, y);
-                        Console.WriteLine("\nPower = " + x + " pow " + y + " = " + pow);
+                        Console.WriteLine("\nPower = " + x + " to the power " + y + " = " + pow);
                         break;
-                    case 6:
+                    case 6:             //Remainder case
                         double rem = x % y;
                         while (x < y)
                         {
@@ -282,7 +283,7 @@ namespace CSharpFundmentalExam
 
                 }
 
-                Console.WriteLine(" \nDo you wish to make another operation?");
+                Console.WriteLine(" \nDo you wish to make another operation?");   //in case user wants to make another Operation 
                 Console.WriteLine("Enter 'Y' for Yes or 'N' for No: ");
                 var another = Console.ReadLine();
                 if (another != "y" && another != "Y")
@@ -293,7 +294,7 @@ namespace CSharpFundmentalExam
 
             }
         }
-        static double Power(double a, double b)
+        static double Power(double a, double b) //=======> Function Made for the previous program "Math Operator"
         {
             double ans = Math.Pow(a, b);
             return ans;
@@ -301,7 +302,7 @@ namespace CSharpFundmentalExam
 
 
         }
-        static string TryAgain()
+        static string TryAgain()  //=======> Function Made for the previous program "Math Operator"in case user hit Enter without typing anything
         {
 
             var question = Console.ReadLine();
@@ -314,7 +315,7 @@ namespace CSharpFundmentalExam
             }
             return question;
         }
-        static void NumberOfSpaces()
+        static void NumberOfSpaces()        //Question No.5
         {
             Console.WriteLine("Please Enter any Sentence to count its Spaces");
             string Sen = Console.ReadLine();
@@ -327,18 +328,16 @@ namespace CSharpFundmentalExam
                 if (a == ' ')
                 {
                     Counter += 1;
-
-
-
                 }
 
 
             }
 
             Console.WriteLine("The Number of Spaces is: " + Counter);
+            //another solution is using Split Method: ' ' and number of spaces is (array.length-1)=====>(5 words have 4 spaces) 
 
         }
-        static void SumOfIndividualDigits()
+        static void SumOfIndividualDigits()         //Question No.7
         {
             Console.WriteLine("Please Enter any Numbers in the following format: 2,356,1200,540");
             string Num = Console.ReadLine();
@@ -368,40 +367,47 @@ namespace CSharpFundmentalExam
             Console.WriteLine("The Sum of Numbers is: " + result);
 
         }
-        static void GetLongestWord()
+        static void GetLongestWordInMultipleStrings()            //Question No.8
         {
-            Console.WriteLine("Please Enter a Sentence to get it's Longest Word");
-            String Sen = Console.ReadLine();
-            Console.WriteLine(" ");
-            String NumString = string.Empty;
+            Console.Write("Please enter the Number of strings you want to insert: ");
+            int Num = int.Parse(Console.ReadLine());
+            string[] ArrayStrings = new string[Num];
             int MaxVal = int.MinValue;
-            int counter = 0;
+            string MaxString = string.Empty;
 
-            for (int i = 0; i < Sen.Length; i++)
+            for (int i = 0; i < Num; i++)
             {
-                char a = Sen[i];
-                if (a != ' ')
-                {
-                    NumString += a;
-                }
-                else if (a == ' ')
-                {
-                    int WordLength = NumString.Length;
-                    counter++;
+                Console.Write("Please enter your No.{0} String: ", i + 1);
+                string String = Console.ReadLine();
+                ArrayStrings[i] = String;
+            }
 
-                    if (WordLength > MaxVal)
+            for (int i = 0; i < Num; i++)
+            {
+
+
+                var ArrWords = ArrayStrings[i].Split(' ');
+
+
+                for (int j = 0; j < ArrWords.Length; j++)
+                {
+                    int Word = ArrWords[j].Length;
+                    string word = ArrWords[j];
+
+                    if (Word > MaxVal)
                     {
-                        MaxVal = WordLength;
+                        MaxVal = Word;
+                        MaxString = word;
                     }
-
-                    Console.WriteLine("Number of Digits in word No.{0} '{1}' is: {2}", counter, NumString, WordLength);
-                    NumString = string.Empty;
                 }
+
+
 
             }
-            Console.WriteLine("\nLongest word Contains " + MaxVal + " Characters \n");
+            Console.WriteLine("\nLongest Word in all strings is " + MaxString + " and it has " + MaxVal + " Characters ");
         }
-        static void GetMaximumNumber()
+
+        static void GetMaximumNumber()      //Question No.9
         {
             Console.WriteLine("Please Enter any Numbers in the following format: 2,356,1200,540");
             String Num = Console.ReadLine();
@@ -431,31 +437,61 @@ namespace CSharpFundmentalExam
 
 
         }
-        static void GetLongestWordInMultipleStrings()
+        static void GetLongestWord()        //Question No.10
         {
-            Console.Write("Please enter the Number of strings you want to insert: ");
-            int Num = int.Parse(Console.ReadLine());
+            Console.WriteLine("Please Enter a Sentence to get it's Longest Word");
+            String Sen = Console.ReadLine();
+            Console.WriteLine(" ");
+            String NumString = string.Empty;
             int MaxVal = int.MinValue;
+            string MaxString = string.Empty;
+            int counter = 0;
 
-            for (int i = 0; i < Num; i++)
+            //you can use split but this is another solution
+
+            for (int i = 0; i < Sen.Length; i++)
             {
-                Console.Write("Please enter your No.{0} String: ", i + 1);
-                string String = Console.ReadLine();
-
-                int SenLength = String.Length;
-
-                if (SenLength > MaxVal)
+                char a = Sen[i];
+                if (a != ' ' && a != ',')
                 {
-                    MaxVal = SenLength;
+                    NumString += a;
+
+                    if (i == Sen.Length - 1)       //For Last Word 
+                    {
+                        int WordLength = NumString.Length;
+                        string word = NumString;
+                        counter++;
+
+                        if (WordLength > MaxVal)
+                        {
+                            MaxVal = WordLength;
+                            MaxString = word;
+                        }
+
+                    }
                 }
-                var x = i + 1;
-                Console.WriteLine("Your No." + x + " String contains " + SenLength + " Characters\n");
+                else if (a == ' ' || a == ',')
+                {
+                    int WordLength = NumString.Length;
+                    string word = NumString;
+                    counter++;
+
+                    if (WordLength > MaxVal)
+                    {
+                        MaxVal = WordLength;
+                        MaxString = word;
+                    }
+
+
+                    NumString = string.Empty;
+                }
 
             }
-            Console.WriteLine("\nLongest string is " + MaxVal + " Characters Long");
+            Console.WriteLine("\nLongest word is " + MaxString + " and it Contains " + MaxVal + " Characters \n");
         }
 
-        static void CheckXYZ()
+
+        static void CheckXYZ()        //Question No.11
         {
             try
             {
@@ -491,7 +527,7 @@ namespace CSharpFundmentalExam
             }
 
         }
-        static void SumOfThreeNumbers()
+        static void SumOfThreeNumbers()         //Question No.12
         {
 
             try
@@ -528,9 +564,9 @@ namespace CSharpFundmentalExam
                 Console.WriteLine("Invalid input!, Please Enter a Valid Numbers");
             }
 
-        }
+        }       
 
-        static void PyramidPattern()
+        static void PyramidPattern()            //Question No.13
         {
             int Height = ASK.ASKint("Please Enter the Number of Rows (Pyramid Height): ");
             int Count = 1;
@@ -562,9 +598,9 @@ namespace CSharpFundmentalExam
                 Count++;
                 Console.WriteLine(" ");
             }
-        }
+        }           
 
-        static void Factorial()
+        static void Factorial()         //Question No.14
         {
             int Factorial = 1;
             int F = ASK.ASKint("Please Enter the Desired Number to Calculate its Factorial: ");
@@ -574,9 +610,9 @@ namespace CSharpFundmentalExam
                 Factorial = Factorial * i;
             }
             Console.WriteLine("The Factorial of Number " + F + " is: " + Factorial);
-        }
+        }       
 
-        static void PerfectNumbers()
+        static void PerfectNumbers()            //Question No.15
         {
             double Num = ASK.ASKdouble("Please Enter a Number to check if it's Perfect or not: ");
             Console.WriteLine(" ");
@@ -609,9 +645,9 @@ namespace CSharpFundmentalExam
                 Console.WriteLine("The Number " + Num + " is NOT Perfect\n-----------------------------\n");
 
             }
-        }
-        static void ArrayElementFrequency()
-        {
+        }               
+        static void ArrayElementFrequency()            //Question No.16
+        {       
             int Num = ASK.ASKint("Please Enter the Number of Array Elements: \n");
 
             double[] Arr1 = new double[Num];
@@ -630,8 +666,8 @@ namespace CSharpFundmentalExam
             }
 
 
-        }
-        static void SeperateOddAndEven()
+        }           
+        static void SeperateOddAndEven()        //Question No.17
         {
             try
             {
@@ -677,10 +713,12 @@ namespace CSharpFundmentalExam
 
                 }
 
-                //Here you can make another solution using String.Split Method for the odd string and even string
-
                 double[] OddArr = new double[OddCount];
                 double[] EvenArr = new double[EvenCount];
+
+
+                //Starting Frrom Here you can make another solution by using String.Split Method for the odd string and even string
+
 
                 for (int i = 0; i < EvenString.Length; i++)
                 {
@@ -689,7 +727,7 @@ namespace CSharpFundmentalExam
                     {
                         NumString1.Append(a);
                     }
-                    else if (!string.IsNullOrWhiteSpace(NumString1.ToString()))
+                    else if (!string.IsNullOrWhiteSpace(NumString1.ToString()))   //ToString() is used to convert from StringBuilder to type String
                     {
                         EvenArr.SetValue(double.Parse(NumString1.ToString()), Count1);
                         Count1++;
@@ -735,9 +773,9 @@ namespace CSharpFundmentalExam
                 Console.WriteLine("\nInvalid Input, Please try to enter a Valid Number\n");
             }
 
-        }
+        }           
 
-        static void DeleteDesiredElement()
+        static void DeleteDesiredElement()      //Question No.18
         {
             try
             {
@@ -789,7 +827,7 @@ namespace CSharpFundmentalExam
             }
         }
 
-        static void SecondLargestNumber()
+        static void SecondLargestNumber()       //Question No.19
         {
             try
             {
@@ -834,9 +872,9 @@ namespace CSharpFundmentalExam
 
 
 
-        }
+        }        
 
-        static void DayProp()
+        static void DayProp()            //Question No.20
         {
             try
             {
@@ -937,7 +975,7 @@ namespace CSharpFundmentalExam
             }
         }
 
-        static void TravelExpences()
+        static void TravelExpences()            //Question No.21
         {
             double[] Arr = new double[6];
             double Money = ASK.ASKdouble("Please Enter the amout of money you have: \n");
@@ -969,16 +1007,16 @@ namespace CSharpFundmentalExam
 
 
 
-        }
+        }               
 
-        static void FileCreator()
+        static void FileCreator()       //Question No.22
         {
             File.WriteAllText(@"D:\Engineering\text.txt", "this text a written by VS C# programming code");
             File.Copy(@"D:\Engineering\text.txt", @"D:\Games\text.txt",true);
 
-        }
+        }           
 
-        static void DateTimeArrays()
+        static void DateTimeArrays()               //Question No.23
         {
             int Num = ASK.ASKint("Please Enter the Number of Activities: ");
             string[] StartDateArray = new string[Num];
@@ -1039,7 +1077,7 @@ namespace CSharpFundmentalExam
             Console.WriteLine("Total Duration For all Activities is: {0} Days", TotalDuration.Days);
 
         }
-        static void WorkingWithFiles()
+        static void WorkingWithFiles()      //Question No.24, 25, 26, 27, 28
         {
             //Question No.24
             File.Create(@"D:\Engineering\TEXT1.txt");
@@ -1054,22 +1092,22 @@ namespace CSharpFundmentalExam
             File.AppendAllText(@"D:\Engineering\Text2.txt", "This line was appended by another method in VS-AppendAllText");
 
             //Question No.28
-            string[] Line = new string[1] { "This is a text line to be added to the current File using AppendAllLines"};
+            string[] Line = new string[1] { "This is a text line to be added to the current File using AppendAllLines Method"};
             File.AppendAllLines(@"D:\Engineering\Text2.txt", Line);
 
         }
 
-        static void NumberOfWords()
+        static void NumberOfWords()         //Question No.29
         {
             string Text = File.ReadAllText(@"D:\Engineering\Text2.txt");
             var ArrayText = Text.Split(' ');
             Console.WriteLine("Number of words = {0} ", ArrayText.Length + 1);
         }
 
-        static void TextLongestWord()
+        static void TextLongestWord()           //Question No.30
         {
             string Text = File.ReadAllText(@"D:\Engineering\Text2.txt");
-            var ArrayText = Text.Split(' ');
+            var ArrayText = Text.Split(' ');    
             int MaxVal = int.MinValue;
 
             for (int i = 0; i < ArrayText.Length; i++)
